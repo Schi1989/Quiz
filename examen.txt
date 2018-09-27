@@ -1,12 +1,72 @@
+----------------------parte 1
+---1
+--CREAR 1 TABLESPACE 
+create tablespace quiz_noche datafile
+'examen.dbf' size 10 M,
+'examen2.dbf' size 10 M
+AUTOEXTEND ON NEXT 100K MAXSIZE 100M
+EXTENT MANAGEMENT LOCAL 
+SEGMENT SPACE MANAGEMENT AUTO
+ONLINE;
+-------------------------------------------
+----------2
+
+CREATE PROFILE estudiante LIMIT
+   FAILED_LOGIN_ATTEMPTS 5
+   PASSWORD_LIFE_TIME 60
+   PASSWORD_REUSE_TIME 60
+   PASSWORD_REUSE_MAX 5   
+   PASSWORD_LOCK_TIME 1/24
+   PASSWORD_GRACE_TIME 10;
+
+---------------------------------------------------
+
+------3
+CREATE USER user1 IDENTIFIED BY user1
+DEFAULT TABLESPACE quiz_noche
+TEMPORARY TABLESPACE TEMP
+QUOTA UNLIMITED ON quiz_noche
+PROFILE estudiante;
+
+GRANT CONNECT TO DESARROLLADOR;
+GRANT DESARROLLADOR TO user1;
+GRANT CREATE TABLE TO user1;
+GRANT CONNECT TO user1;
+GRANT CONNECT TO user1;
+--------------------------------------------------
+---------4
+CREATE USER user2 IDENTIFIED BY user2
+DEFAULT TABLESPACE quiz_noche
+TEMPORARY TABLESPACE TEMP
+QUOTA UNLIMITED ON quiz_noche
+PROFILE estudiante;
+
+GRANT CONNECT TO DESARROLLADOR;
+GRANT DESARROLLADOR TO user2;
+
+----------------------------------
+
+------------------parte 2------
+create table attacks (
+	id INT,
+	url VARCHAR(2048),
+	ip_address VARCHAR(20),
+	number_of_attacks INT,
+	time_of_last_attack TIMESTAMP
+);
 
 
+------------------------------------------------
+--------parte 3
+--1
+SELECT    COUNT(1) TOTAL
+FROM     attacks 
+WHERE     URL LIKE '%http%';
 
+------------------------------------------
+---2
+SELECT    COUNT(1) TOTAL
+FROM     attacks 
+WHERE     URL LIKE google%';
 
-
-hola examen como estas
-vamos a ganar
-
-
-
-kpdfps
 ---
